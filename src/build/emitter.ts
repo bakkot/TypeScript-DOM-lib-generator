@@ -1581,15 +1581,15 @@ export function emitWebIdl(
       const methods = [
         {
           name: "entries",
-          definition: `IterableIterator<[${keyType}, ${valueType}]>`,
+          definition: `BuiltinIterator<[${keyType}, ${valueType}]>`,
         },
         {
           name: "keys",
-          definition: `IterableIterator<${keyType}>`,
+          definition: `BuiltinIterator<${keyType}>`,
         },
         {
           name: "values",
-          definition: `IterableIterator<${valueType}>`,
+          definition: `BuiltinIterator<${valueType}>`,
         },
       ];
 
@@ -1697,7 +1697,7 @@ export function emitWebIdl(
 
     if (subtypes && !iteratorExtends) {
       printer.printLine(
-        `[Symbol.iterator](): IterableIterator<${stringifySingleOrTupleTypes(
+        `[Symbol.iterator](): BuiltinIterator<${stringifySingleOrTupleTypes(
           subtypes,
         )}>;`,
       );
@@ -1731,7 +1731,7 @@ export function emitWebIdl(
         methods = [
           {
             name: "values",
-            definition: `AsyncIterableIterator<${valueType}>`,
+            definition: `AsyncBuiltinIterator<${valueType}>`,
           },
         ];
       } else {
@@ -1740,15 +1740,15 @@ export function emitWebIdl(
         methods = [
           {
             name: "entries",
-            definition: `AsyncIterableIterator<[${keyType}, ${valueType}]>`,
+            definition: `AsyncBuiltinIterator<[${keyType}, ${valueType}]>`,
           },
           {
             name: "keys",
-            definition: `AsyncIterableIterator<${keyType}>`,
+            definition: `AsyncBuiltinIterator<${keyType}>`,
           },
           {
             name: "values",
-            definition: `AsyncIterableIterator<${valueType}>`,
+            definition: `AsyncBuiltinIterator<${valueType}>`,
           },
         ];
       }
@@ -1778,7 +1778,7 @@ export function emitWebIdl(
     printer.increaseIndent();
 
     printer.printLine(
-      `[Symbol.asyncIterator](${paramsString}): AsyncIterableIterator<${stringifySingleOrTupleTypes(
+      `[Symbol.asyncIterator](${paramsString}): AsyncBuiltinIterator<${stringifySingleOrTupleTypes(
         subtypes,
       )}>;`,
     );
